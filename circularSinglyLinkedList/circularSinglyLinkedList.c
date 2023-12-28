@@ -20,6 +20,142 @@ struct node* init(int data)
 	return newNode;
 }
 
+int addFront(struct node** list, int data)
+{
+	if (*list == NULL) // initialize empty list.
+	{
+		*list = init(data);
+		return 0;
+	}
+
+	// find tail node and insert new head node.
+	struct node* head = *list;
+	do {
+		struct node* curr = *list;
+		if (curr->next == head)
+		{
+			struct node* newNode = malloc(sizeof(struct node));
+			newNode->data = data;
+			curr->next = newNode; // insert new node b/w tail and head.
+			newNode->next = head;
+			*list = newNode; // assign new head;
+			return 0;
+		}
+		*list = curr->next;
+	} while (*list != head);
+}
+
+int addBack(struct node** list, int data)
+{
+	if (*list == NULL) // initialize empty list.
+	{
+		*list = init(data);
+		return 0;
+	}
+
+	struct node* head = *list; // remember head node address.
+	do {
+		struct node* curr = *list;
+		if (curr->next == head)
+		{
+			struct node* newNode = malloc(sizeof(struct node));
+			newNode->data = data;
+			curr->next = newNode;
+			newNode->next = head;
+			*list = head;
+			return 0;
+		}
+		*list = curr->next;
+	} while (*list != head);
+}
+
+int deleteFront(struct node** list)
+{
+	if (*list == NULL) return 1; // list is empty.
+
+	struct node* head = *list;
+	if (head->next == head) // check if list has only one node.
+	{
+		free(head);
+		*list = NULL;
+		return 0;
+	}
+	// find tail node, delete head node.
+	do {
+		struct node* curr = *list;
+		if (curr->next == head)
+		{
+			curr->next = head->next;
+			*list = head->next;
+			free(head);
+			return 0;
+		}
+		*list = curr->next;
+	} while (*list != head);
+}
+
+int deleteBack(struct node** list)
+{
+	if (*list == NULL) return 1; // list is empty.
+	
+	struct node* head = *list;
+	if (head->next == head) // check if list has only one node.
+	{
+		free(head);
+		*list = NULL;
+		return 0;
+	}
+	// find, delete tail node.
+	do {
+		struct node* curr = *list;
+		struct node* dummy = curr->next;
+		if (dummy->next == head)
+		{
+			free(dummy);
+			curr->next = head;
+			*list = head;
+			return 0;
+		}
+		*list = curr->next;
+	} while (*list != head);
+}
+
+int clear(struct node** list)
+{
+	if (*list == NULL) return 1; // list is empty.
+
+	struct node* head = *list;
+	do {
+		struct node* dummy = *list;
+		*list = dummy->next;
+		free(dummy);
+		if (dummy->next == head)
+		{
+			*list = NULL;
+			return 0;
+		}
+	} while (*list != head);
+}
+
+int isEmpty(struct node* list)
+{
+	if (list == NULL) return 1; // list is empty.
+	else return 0;
+}
+
+int size(struct node* list, int* nodeCount)
+{
+	if (list == NULL) return 1; // list is empty.
+
+	struct node* head = list;
+	*nodeCount = 0;
+	do {
+		++*nodeCount;
+		list = list->next;
+	} while (list != head);
+	return 0;
+}
+
 int print(struct node* list)
 {
 	if (list == NULL) return 1; // list is empty.
@@ -33,4 +169,5 @@ int print(struct node* list)
 		list = list->next;
 	} while (list != head);
 	printf("\n");
+	return 0;
 }
