@@ -18,7 +18,7 @@
     <ClCompile Include="main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="circularSinglyLinkedList.c">
+    <ClCompile Include="csList.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -26,7 +26,7 @@
     <ClInclude Include="nodes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="circularSinglyLinkedList.h">
+    <ClInclude Include="csList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

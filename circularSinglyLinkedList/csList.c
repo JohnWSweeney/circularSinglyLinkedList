@@ -1,4 +1,4 @@
-#include "circularSinglyLinkedList.h"
+#include "csList.h"
 // sweeney's hand-rolled circular singly linked list.
 //
 // pos = "position".
@@ -118,6 +118,82 @@ int deleteBack(struct node** list)
 		}
 		*list = curr->next;
 	} while (*list != head);
+}
+
+int returnFrontData(struct node* list, int* data)
+{
+	if (list == NULL) return 1; // list is empty.
+	*data = list->data;
+	return 0;
+}
+
+int returnBackData(struct node* list, int* data)
+{
+	if (list == NULL) return 1; // list is empty.
+
+	struct node* head = list;
+	do {
+		if (list->next == head)
+		{
+			*data = list->data;
+			return 0;
+		}
+		list = list->next;
+	} while (list != head);
+}
+
+int returnPosData(struct node* list, int pos, int* data)
+{
+	if (list == NULL) return 1; // list is empty.
+
+	struct node* head = list;
+	int tempPos = 0;
+	do {
+		if (tempPos == pos)
+		{
+			data = list->data;
+			return 0;
+		}
+		++tempPos;
+		list = list->next;
+	} while (list != head);
+	return -1; // position not in list.
+}
+
+int updatePosData(struct node* list, int pos, int data)
+{
+	if (list == NULL) return 1; // list is empty.
+
+	struct node* head = list;
+	int tempPos = 0;
+	do {
+		if (tempPos == pos)
+		{
+			list->data = data;
+			return 0;
+		}
+		++tempPos;
+		list = list->next;
+	} while (list != head);
+	return -1; // position not in list.
+}
+
+int returnDataPos(struct node* list, int data, int* pos)
+{
+	if (list == NULL) return 1; // list is empty.
+
+	struct node* head = list;
+	int tempPos = 0;
+	do {
+		if (data == list->data)
+		{
+			*pos = tempPos;
+			return 0;
+		}
+		++tempPos;
+		list = list->next;
+	} while (list != head);
+	return -1; // data not in list.
 }
 
 int clear(struct node** list)

@@ -127,11 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="circularSinglyLinkedList.c" />
+    <ClCompile Include="csList.c" />
     <ClCompile Include="main.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="circularSinglyLinkedList.h" />
+    <ClInclude Include="csList.h" />
     <ClInclude Include="nodes.h" />
   </ItemGroup>
   <ItemGroup>
