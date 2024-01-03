@@ -2,13 +2,14 @@
 
 int main()
 {
-	printf("Circular Singly Linked List v0.0.2\n\n");
+	printf("Circular Singly Linked List v0.0.3\n\n");
 
 	int result = 0;
 	int nodeCount = 0;
 	int data = 0;
 	int position = 0;
 	struct node* list = NULL;
+	struct node* ptr = NULL;
 
 	for (int i = 0; i < 9; i++)
 	{
@@ -25,10 +26,14 @@ int main()
 	}
 	print(list);
 	/// test code here: ////////////////////////////////////////
-	data = 1024;
-	result = returnDataPos(list, data, &position);
+	position = 0;
+	result = returnPosPtr(list, position, &ptr);
 	printf("Result: %d\n", result);
-	printf("Data %d found in position %d.\n\n", data, position);
+	printf("Position %d address: %p.\n\n", position, ptr);
+	///
+	result = returnPtrData(list, ptr, &data);
+	printf("Result: %d\n", result);
+	printf("Data: %d\n\n", data);
 	////////////////////////////////////////////////////////////
 	result = size(list, &nodeCount);
 	if (result == 0)

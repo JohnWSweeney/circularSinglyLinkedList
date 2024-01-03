@@ -120,6 +120,25 @@ int deleteBack(struct node** list)
 	} while (*list != head);
 }
 
+int returnPosPtr(struct node* list, int pos, struct node** ptr)
+{
+	if (list == NULL) return 1; // list is empty.
+
+	struct node* head = list;
+	int tempPos = 0;
+
+	do {
+		if (tempPos == pos)
+		{
+			*ptr = list;
+			return 0;
+		}
+		++tempPos;
+		list = list->next;
+	} while (list != head);
+	return -1; // position not in list.
+}
+
 int returnFrontData(struct node* list, int* data)
 {
 	if (list == NULL) return 1; // list is empty.
@@ -160,6 +179,23 @@ int returnPosData(struct node* list, int pos, int* data)
 	return -1; // position not in list.
 }
 
+int returnPtrData(struct node* list, struct node* ptr, int* data)
+{
+	if (list == NULL) return 1; // list is empty.
+	if (ptr == NULL) return 2; // pointer is null.
+
+	struct node* head = list;
+	do {
+		if (list == ptr)
+		{
+			*data = list->data;
+			return 0;
+		}
+		list = list->next;
+	} while (list != head);
+	return -1; // pointer not in list.
+}
+
 int updatePosData(struct node* list, int pos, int data)
 {
 	if (list == NULL) return 1; // list is empty.
@@ -194,6 +230,68 @@ int returnDataPos(struct node* list, int data, int* pos)
 		list = list->next;
 	} while (list != head);
 	return -1; // data not in list.
+}
+
+int returnMinPos(struct node* list, int* min, int* pos)
+{
+	if (list == NULL) return 1; // list is empty.
+
+	struct node* head = list;
+	int tempPos = 0;
+
+	*min = list->data;
+	*pos = tempPos;
+
+	do {
+		if (*min > list->data)
+		{
+			*min = list->data;
+			*pos = tempPos;
+		}
+		++tempPos;
+		list = list->next;
+	} while (list != head);
+	return 0;
+}
+
+int returnMaxPos(struct node* list, int* max, int* pos)
+{
+	if (list == NULL) return 1; // list is empty.
+
+	struct node* head = list;
+	int tempPos = 0;
+
+	*max = list->data;
+	*pos = tempPos;
+
+	do {
+		if (*max < list->data)
+		{
+			*max = list->data;
+			*pos = tempPos;
+		}
+		++tempPos;
+		list = list->next;
+	} while (list != head);
+	return 0;
+}
+
+int returnTailPos(struct node* list, int* pos)
+{
+	if (list == NULL) return 1; // list is empty.
+
+	struct node* head = list;
+	int tempPos = 0;
+
+	do {
+		if (list->next == head)
+		{
+			*pos = tempPos;
+			return 0;
+		}
+		++tempPos;
+		list = list->next;
+	} while (list != NULL);
 }
 
 int clear(struct node** list)
