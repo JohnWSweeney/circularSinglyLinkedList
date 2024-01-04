@@ -1,6 +1,9 @@
 # circularSinglyLinkedList
 
 ## ChangeLog
+v0.0.4
+- Added updatePtrData and returnDataPtr functions.
+
 v0.0.3
 - Added returnPosPtr, returnPtrData, returnMinPos, returnMaxPos, and returnTailPos functions.
 

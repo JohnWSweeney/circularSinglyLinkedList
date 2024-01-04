@@ -2,7 +2,7 @@
 
 int main()
 {
-	printf("Circular Singly Linked List v0.0.3\n\n");
+	printf("Circular Singly Linked List v0.0.4\n\n");
 
 	int result = 0;
 	int nodeCount = 0;
@@ -26,14 +26,8 @@ int main()
 	}
 	print(list);
 	/// test code here: ////////////////////////////////////////
-	position = 0;
-	result = returnPosPtr(list, position, &ptr);
+	
 	printf("Result: %d\n", result);
-	printf("Position %d address: %p.\n\n", position, ptr);
-	///
-	result = returnPtrData(list, ptr, &data);
-	printf("Result: %d\n", result);
-	printf("Data: %d\n\n", data);
 	////////////////////////////////////////////////////////////
 	result = size(list, &nodeCount);
 	if (result == 0)

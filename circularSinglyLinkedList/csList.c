@@ -214,6 +214,23 @@ int updatePosData(struct node* list, int pos, int data)
 	return -1; // position not in list.
 }
 
+int updatePtrData(struct node* list, struct node* ptr, int data)
+{
+	if (list == NULL) return 1; // list is empty.
+	if (ptr == NULL) return 2; // pointer is NULL.
+
+	struct node* head = list;
+	do {
+		if (list == ptr)
+		{
+			list->data = data;
+			return 0;
+		}
+		list = list->next;
+	} while (list != head);
+	return -1; // pointer not in list.
+}
+
 int returnDataPos(struct node* list, int data, int* pos)
 {
 	if (list == NULL) return 1; // list is empty.
@@ -227,6 +244,22 @@ int returnDataPos(struct node* list, int data, int* pos)
 			return 0;
 		}
 		++tempPos;
+		list = list->next;
+	} while (list != head);
+	return -1; // data not in list.
+}
+
+int returnDataPtr(struct node* list, int data, struct node** ptr)
+{
+	if (list == NULL) return 1; // list is empty.
+
+	struct node* head = list;
+	do {
+		if (list->data == data)
+		{
+			*ptr = list;
+			return 0;
+		}
 		list = list->next;
 	} while (list != head);
 	return -1; // data not in list.
